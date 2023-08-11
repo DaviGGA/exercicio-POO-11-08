@@ -5,17 +5,17 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Quantos carros você irá registrar?");
-        int numeroDeCarros = sc.nextInt();
+        System.out.println("Quantos objetos você irá registrar?");
+        int numeroDeObjetos = sc.nextInt();
 
-        String[] nomes = new String[numeroDeCarros];
-        int[] quantidades = new int[numeroDeCarros];
-        double[] precosDeCompra = new  double[numeroDeCarros];
-        double[] precoDeVenda = new double[numeroDeCarros];
-        String[] categoria = new String[numeroDeCarros];
+        String[] nomes = new String[numeroDeObjetos];
+        int[] quantidades = new int[numeroDeObjetos];
+        double[] precosDeCompra = new  double[numeroDeObjetos];
+        double[] precoDeVenda = new double[numeroDeObjetos];
+        String[] categorias = new String[numeroDeObjetos];
 
 
-        for (int i = 0; i < numeroDeCarros; i++) {
+        for (int i = 0; i < numeroDeObjetos; i++) {
             System.out.println("NOME:");
             nomes[i] = sc.next();
 
@@ -29,28 +29,28 @@ public class App {
             precoDeVenda[i] = sc.nextDouble();
 
             System.out.println("CATEGORIA:");
-            categoria[i] = sc.next();
+            categorias[i] = sc.next();
 
         }
 
         System.out.println("========================================");
 
-        for (int i = 0 ; i < numeroDeCarros; i++) {
+        for (int i = 0 ; i < numeroDeObjetos; i++) {
             System.out.println(nomes[i] + " " + quantidades[i] + " "
-            + precosDeCompra[i] + " " + precoDeVenda[i] + " " + categoria[i]
+            + precosDeCompra[i] + " " + precoDeVenda[i] + " " + categorias[i]
             );
         }
 
         System.out.println("========================================");
 
-        for ( int i = 0 ; i < numeroDeCarros; i++) {
+        for ( int i = 0 ; i < numeroDeObjetos; i++) {
             double lucroUnitario = precoDeVenda[i] - precosDeCompra[i];
             boolean obteveLucro = lucroUnitario > 0;
 
             if (obteveLucro) {
-                System.out.println("O colecionador obteve lucro na venda do carro " + nomes[i]);
+                System.out.println("O colecionador obteve lucro na venda do objeto " + nomes[i]);
             } else {
-                System.out.println("O colecionador obteve prejuizo na venda do carro " + nomes[i]);
+                System.out.println("O colecionador obteve prejuizo na venda do objeto " + nomes[i]);
             }
 
         }
@@ -59,7 +59,7 @@ public class App {
 
         int maiorQuantidade = quantidades[0];
         String maiorQuantidadeNome = nomes[0];
-        for ( int i = 0 ; i < numeroDeCarros; i++) {
+        for ( int i = 0 ; i < numeroDeObjetos; i++) {
             
             if (quantidades[i] > maiorQuantidade) {
                 maiorQuantidade = quantidades[i];
@@ -69,7 +69,7 @@ public class App {
 
         int menorQuantidade = quantidades[0];
         String menorQuantidadeNome = nomes[0];
-        for ( int i = 0 ; i < numeroDeCarros; i++) {
+        for ( int i = 0 ; i < numeroDeObjetos; i++) {
             
             if (quantidades[i] < menorQuantidade) {
                 menorQuantidade = quantidades[i];
@@ -77,11 +77,27 @@ public class App {
             }
         }
 
-        System.out.println("O Carro com maior quantidade foi o " + maiorQuantidadeNome + 
+        System.out.println("O objeto com maior quantidade foi o " + maiorQuantidadeNome + 
         " e o com menor foi o " + menorQuantidadeNome
         );
 
+        System.out.println("========================================");
 
+        double somaPrDeCompraTransportes = 0;
+        int objetosDeTransporte = 0;
+
+        for ( int i = 0 ; i < numeroDeObjetos; i++) {
+            
+            if (categorias[i].toLowerCase()  == "transporte") {
+                somaPrDeCompraTransportes += precosDeCompra[i];
+                objetosDeTransporte++;
+            }
+            
+        }
+
+        double mediaPrDeCompraTransportes = somaPrDeCompraTransportes / objetosDeTransporte;
+
+        System.out.println("A média do preço de compra de produtos de transporte é " + mediaPrDeCompraTransportes);
 
     }
 
