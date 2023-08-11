@@ -14,7 +14,6 @@ public class App {
         double[] precoDeVenda = new double[numeroDeObjetos];
         String[] categorias = new String[numeroDeObjetos];
 
-
         for (int i = 0; i < numeroDeObjetos; i++) {
             System.out.println("NOME:");
             nomes[i] = sc.next();
@@ -59,6 +58,7 @@ public class App {
 
         int maiorQuantidade = quantidades[0];
         String maiorQuantidadeNome = nomes[0];
+        
         for ( int i = 0 ; i < numeroDeObjetos; i++) {
             
             if (quantidades[i] > maiorQuantidade) {
@@ -69,8 +69,8 @@ public class App {
 
         int menorQuantidade = quantidades[0];
         String menorQuantidadeNome = nomes[0];
-        for ( int i = 0 ; i < numeroDeObjetos; i++) {
-            
+        
+        for ( int i = 0 ; i < numeroDeObjetos; i++) {         
             if (quantidades[i] < menorQuantidade) {
                 menorQuantidade = quantidades[i];
                 menorQuantidadeNome = nomes[i];
@@ -86,18 +86,44 @@ public class App {
         double somaPrDeCompraTransportes = 0;
         int objetosDeTransporte = 0;
 
-        for ( int i = 0 ; i < numeroDeObjetos; i++) {
-            
+        for ( int i = 0 ; i < numeroDeObjetos; i++) {   
             if (categorias[i].toLowerCase()  == "transporte") {
                 somaPrDeCompraTransportes += precosDeCompra[i];
                 objetosDeTransporte++;
-            }
-            
+            }     
         }
 
         double mediaPrDeCompraTransportes = somaPrDeCompraTransportes / objetosDeTransporte;
-
         System.out.println("A média do preço de compra de produtos de transporte é " + mediaPrDeCompraTransportes);
+
+        System.out.println("========================================");
+
+        int monetariosPrDeVendaMaiorQueCinco = 0;
+        
+        for ( int i = 0 ; i < numeroDeObjetos; i++) {   
+            if(categorias[i].toLowerCase() == "monetário" && precoDeVenda[i] > 5.00) {
+                monetariosPrDeVendaMaiorQueCinco += quantidades[i];
+            }
+        }
+
+        System.out.println("Exitem " + monetariosPrDeVendaMaiorQueCinco + "objetos monetários com preço de venda superior a 5");
+
+        System.out.println("========================================");
+
+        double lucroTotal = 0;
+        
+        for ( int i = 0 ; i < numeroDeObjetos; i++) {   
+            lucroTotal += (precoDeVenda[i] - precosDeCompra[i]) * quantidades[i];
+        }
+
+        boolean obteveLucro = lucroTotal > 0;
+
+        if (obteveLucro) {
+            System.out.println("O colecionador obteve um lucro total de R$" + lucroTotal);
+        } else {
+            System.out.println("O colecionador obteve um prejuízo total de R$" + lucroTotal);
+        }
+
 
     }
 
