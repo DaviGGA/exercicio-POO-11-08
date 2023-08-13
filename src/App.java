@@ -86,8 +86,9 @@ public class App {
         double somaPrDeCompraTransportes = 0;
         int objetosDeTransporte = 0;
 
-        for ( int i = 0 ; i < numeroDeObjetos; i++) {   
-            if (categorias[i].toLowerCase()  == "transporte") {
+        for ( int i = 0 ; i < numeroDeObjetos; i++) { 
+
+            if (categorias[i].equals("Transporte")) {
                 somaPrDeCompraTransportes += precosDeCompra[i];
                 objetosDeTransporte++;
             }     
@@ -106,7 +107,7 @@ public class App {
             }
         }
 
-        System.out.println("Exitem " + monetariosPrDeVendaMaiorQueCinco + "objetos monetários com preço de venda superior a 5");
+        System.out.println("Exitem " + monetariosPrDeVendaMaiorQueCinco + " objetos monetários com preço de venda superior a 5");
 
         System.out.println("========================================");
 
